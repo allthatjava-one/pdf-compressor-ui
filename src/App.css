@@ -1,0 +1,135 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, #1a0533 0%, #0a0a0f 60%);
+  padding: 2rem;
+}
+
+/* Card */
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 3.5rem 4rem;
+  max-width: 540px;
+  width: 100%;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.1),
+    0 40px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Subtle glow behind the card */
+.glow-ring {
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.18) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card > *:not(.glow-ring) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 100px;
+  padding: 0.3rem 0.9rem;
+  margin-bottom: 1.6rem;
+  animation: fadeUp 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Title */
+.title {
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #f1f0ff;
+  margin-bottom: 1.2rem;
+  animation: fadeUp 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 55%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.7s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1) 30%,
+    rgba(255, 255, 255, 0.1) 70%,
+    transparent
+  );
+  margin-bottom: 1.8rem;
+  animation: fadeUp 0.7s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  animation: fadeUp 0.7s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tag {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.35rem 0.85rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tag:hover {
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
