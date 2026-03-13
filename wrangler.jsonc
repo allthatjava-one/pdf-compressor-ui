@@ -1,5 +1,8 @@
 {
   "name": "pdf-compressor-ui",
+  "compatibility_date": "2026-03-13",
   // Output directory from `npm run build` (vite build)
-  "pages_build_output_dir": "./dist"
+  "assets": {
+    "directory": "./dist"
+  }
 }

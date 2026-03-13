@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "pages:dev": "concurrently \"vite\" \"wrangler pages dev --proxy 5173\"",
+    "pages:dev": "node -e \"require('fs').mkdirSync('dist',{recursive:true})\" && concurrently \"vite\" \"wrangler pages dev --proxy 5173\"",
     "build": "vite build",
     "preview": "vite preview"
   },
