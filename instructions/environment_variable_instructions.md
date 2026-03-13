@@ -1,5 +1,7 @@
 Check out the example below to see how to read environment variables in a Cloudflare Worker function and display it in a React app.
 
+# Dummy commend
+
 functions/api.js:
 
 '''
