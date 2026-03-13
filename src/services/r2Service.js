@@ -1,31 +1,23 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-
-// DEV ONLY: direct browser upload. Switch to backend presigning before deploying.
-const s3 = new S3Client({
-  region: 'auto',
-  endpoint: import.meta.env.VITE_R2_ENDPOINT_URL,
-  credentials: {
-    accessKeyId: import.meta.env.VITE_R2_ACCESS_KEY_ID,
-    secretAccessKey: import.meta.env.VITE_R2_SECRET_ACCESS_KEY,
-  },
-})
-
-const BUCKET = import.meta.env.VITE_R2_BUCKET_NAME
-
 /**
- * Generates a presigned PUT URL and uploads the file directly to Cloudflare R2.
+ * Requests a presigned PUT URL from the serverless function (functions/r2-presign.js),
+ * then uploads the file directly to Cloudflare R2.
+ * R2 credentials are kept server-side in context.env — never exposed to the browser.
  * @param {File} file - The PDF file to upload.
- * @returns {Promise<string>} The presigned URL used for the upload.
+ * @returns {Promise<{presignedUrl: string, key: string}>}
  */
 export async function uploadToR2(file) {
-  const key = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_')}`
+  // Cloudflare Pages maps /r2-presign to functions/r2-presign.js
+  const res = await fetch('/r2-presign', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ filename: file.name, contentType: file.type || 'application/pdf' }),
+  })
 
-  const presignedUrl = await getSignedUrl(
-    s3,
-    new PutObjectCommand({ Bucket: BUCKET, Key: key, ContentType: 'application/pdf' }),
-    { expiresIn: 300 },
-  )
+  if (!res.ok) {
+    throw new Error(`Failed to get presigned URL: ${res.status} ${res.statusText}`)
+  }
+
+  const { presignedUrl, key } = await res.json()
 
   const response = await fetch(presignedUrl, {
     method: 'PUT',
