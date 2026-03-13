@@ -1,3 +1,8 @@
 node_modules/
 
 .vscode/
+
+# Environment variables — never commit secrets
+.env
+.env.local
+.env.*.local

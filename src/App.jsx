@@ -1,26 +1,10 @@
+import { usePdfCompressor } from './hooks/usePdfCompressor'
+import { PdfCompressorView } from './components/PdfCompressorView'
 import './App.css'
 
 function App() {
-  return (
-    <div className="container">
-      <div className="card">
-        <div className="glow-ring" />
-        <span className="badge">Welcome</span>
-        <h1 className="title">
-          Hello, <span className="gradient-text">World</span>
-        </h1>
-        <p className="subtitle">
-          A modern React application built with Vite.
-        </p>
-        <div className="divider" />
-        <div className="tags">
-          <span className="tag">React 18</span>
-          <span className="tag">Vite</span>
-          <span className="tag">Modern Design</span>
-        </div>
-      </div>
-    </div>
-  )
+  const props = usePdfCompressor()
+  return <PdfCompressorView {...props} />
 }
 
 export default App
