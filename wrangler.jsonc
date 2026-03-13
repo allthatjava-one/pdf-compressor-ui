@@ -1,0 +1,5 @@
+{
+  "name": "pdf-compressor-ui",
+  // Output directory from `npm run build` (vite build)
+  "pages_build_output_dir": "./dist"
+}
