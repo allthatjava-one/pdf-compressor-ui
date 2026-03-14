@@ -107,7 +107,13 @@ export function PdfCompressorView({
                 </div>
               </div>
 
-              <a className="btn btn-primary" href={downloadUrl} download={downloadName}>
+              <a
+                className="btn btn-primary"
+                href={downloadUrl}
+                download={downloadName}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Download Compressed PDF
               </a>
 

@@ -74,20 +74,34 @@ export function usePdfCompressor() {
         throw new Error(`Compression failed: ${response.status} ${response.statusText}`)
       }
 
-      const blob = await response.blob()
-      const url = URL.createObjectURL(blob)
+      const { presignedUrl } = await response.json()
+      if (!presignedUrl) {
+        throw new Error('No presigned URL returned from server.')
+      }
+
+      // Fetch the compressed file from the presigned URL as a blob.
+      // This validates the URL is working and creates a same-origin blob URL
+      // so that <a download> reliably triggers a save-as with the correct filename.
+      const downloadResponse = await fetch(presignedUrl)
+      if (!downloadResponse.ok) {
+        throw new Error(`Failed to fetch compressed file: ${downloadResponse.status} ${downloadResponse.statusText}`)
+      }
+      const blob = await downloadResponse.blob()
+      const blobUrl = URL.createObjectURL(blob)
       const name = file.name.replace(/\.pdf$/i, '_compressed.pdf')
 
-      setDownloadUrl(url)
+      setDownloadUrl(blobUrl)
       setDownloadName(name)
       setProgress(100)
       setStatus('done')
 
       // Auto-trigger download
       const a = document.createElement('a')
-      a.href = url
+      a.href = blobUrl
       a.download = name
+      document.body.appendChild(a)
       a.click()
+      document.body.removeChild(a)
     } catch (err) {
       setErrorMsg(err.message || 'An unexpected error occurred.')
       setStatus('error')
@@ -96,7 +110,6 @@ export function usePdfCompressor() {
 
   const handleReset = () => {
     if (downloadUrl) URL.revokeObjectURL(downloadUrl)
-    setFile(null)
     setStatus('idle')
     setProgress(0)
     setOriginalSize(0)

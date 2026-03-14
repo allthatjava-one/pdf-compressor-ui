@@ -1,10 +1,8 @@
-node_modules/
+.env
+.dev.vars
+
+.wrangler/
 
 .vscode/
-
-# Environment variables — never commit secrets
-.env
-.env.local
-.env.*.local
-.dev.vars
-.wrangler/
+dist/
+node_modules/
