@@ -13,17 +13,5 @@ access http://localhost:8789/ for service
 # Deploy to Cloudflare Pages
 ```
 > Deploy command:npx wrangler deploy --keep-vars
-> Put Non-production branch deployment command as : npx wrangler deploy --dry-run --keep-vars
-```
-
-# For staging
-Add following in wrangler.jsonc
-```
-{
-  "env": {
-    "staging": {
-      "name": "pdf-compressor-ui-staging"
-    }
-  }
-}
+> Put Non-production branch deployment command as : npx wrangler deployments list
 ```
