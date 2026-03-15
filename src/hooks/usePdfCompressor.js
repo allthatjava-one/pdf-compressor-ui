@@ -1,6 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
 import { uploadToR2 } from '../services/r2Service'
-import { getRuntimeConfig } from '../services/runtimeConfig'
 
 export function usePdfCompressor() {
   const [file, setFile] = useState(null)
@@ -53,13 +52,12 @@ export function usePdfCompressor() {
       setProgress(20)
       setErrorMsg('')
 
-      const { key: objectKey } = await uploadToR2(file)
+      const { key: objectKey, pdfCompressorBackendUrl } = await uploadToR2(file)
 
       setProgress(60)
       setStatus('compressing')
 
-      const runtimeConfig = await getRuntimeConfig()
-      const backendUrl = runtimeConfig.pdfCompressorBackendUrl || import.meta.env.VITE_PDF_COMPRESSOR_BACKEND_URL
+      const backendUrl = pdfCompressorBackendUrl || import.meta.env.VITE_PDF_COMPRESSOR_BACKEND_URL
       if (!backendUrl) {
         throw new Error('PDF compressor backend URL is not configured.')
       }

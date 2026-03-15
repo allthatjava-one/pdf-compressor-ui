@@ -2,8 +2,8 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
 export async function onRequestPost(context) {
-  // Read R2 credentials from environment variables (never exposed to the browser)
-  const { R2_ENDPOINT_URL, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_PDF_COMPRESSOR_BUCKET_NAME } = context.env
+  // Read R2 credentials and runtime config from environment variables (never exposed to the browser)
+  const { R2_ENDPOINT_URL, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_PDF_COMPRESSOR_BUCKET_NAME, PDF_COMPRESSOR_BACKEND_URL } = context.env
 
   const { filename, contentType } = await context.request.json()
 
@@ -24,7 +24,13 @@ export async function onRequestPost(context) {
     { expiresIn: 300 },
   )
 
-  return new Response(JSON.stringify({ presignedUrl, key }), {
-    headers: { 'Content-Type': 'application/json' },
-  })
+  // Expose the backend URL so the frontend can call the compression API directly if needed
+  const pdfCompressorBackendUrl = PDF_COMPRESSOR_BACKEND_URL || ''
+
+  return new Response(
+    JSON.stringify({ presignedUrl, key, pdfCompressorBackendUrl }),
+    {
+      headers: { 'Content-Type': 'application/json' },
+    },
+  )
 }

@@ -5,9 +5,11 @@ function isHtmlRequest(request) {
   return request.method === 'GET' && accept.includes('text/html')
 }
 
-function getRuntimeConfig(env) {
+async function getRuntimeConfig(env) {
+  const { PDF_COMPRESSOR_BACKEND_URL } = env
+
   return {
-    pdfCompressorBackendUrl: env.PDF_COMPRESSOR_BACKEND_URL || '',
+    pdfCompressorBackendUrl: PDF_COMPRESSOR_BACKEND_URL || '',
   }
 }
 
