@@ -22,6 +22,18 @@ export function PdfCompressorView({
     <>
           {status !== 'done' && (
             <>
+              <div className="hero-section">
+                <h1 className="hero-title">Drop and Go.</h1>
+                <p className="hero-tagline">
+                  Your PDF will be compressed in no time — privately and securely.
+                </p>
+                <div className="hero-badges">
+                  <span className="hero-badge">⚡ Instant</span>
+                  <span className="hero-badge">🔒 Secure</span>
+                  <span className="hero-badge">🗑️ Auto-deleted</span>
+                </div>
+              </div>
+
               <div
                 className={`drop-zone${isDragging ? ' dragging' : ''}${file ? ' has-file' : ''}`}
                 onDrop={handleDrop}

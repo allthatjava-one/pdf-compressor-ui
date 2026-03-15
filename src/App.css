@@ -108,6 +108,52 @@
   gap: 1.25rem;
 }
 
+/* ── Hero Section ───────────────────────────────── */
+.hero-section {
+  text-align: center;
+  padding-bottom: 0.25rem;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #1e1e2e;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  color: #4b5563;
+  margin: 0 0 1rem;
+  line-height: 1.6;
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6366f1;
+  background: #eef0ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  letter-spacing: 0.01em;
+}
+
 /* ── Drop Zone ───────────────────────────────────── */
 .drop-zone {
   border: 2px dashed #c7d0e8;
