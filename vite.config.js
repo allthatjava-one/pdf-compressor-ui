@@ -8,7 +8,6 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       '/r2-presign': 'http://127.0.0.1:8789',
-      '/runtime-config': 'http://127.0.0.1:8789',
     },
   },
 })

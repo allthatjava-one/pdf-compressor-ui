@@ -8,7 +8,7 @@
     "functions:dev": "wrangler dev dev-worker.js --port 8789",
     "pages:dev": "concurrently -k \"npm run functions:dev\" \"vite\"",
     "build": "vite build",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "npm run build && wrangler deploy --keep-vars",
     "preview": "vite preview"
   },
   "dependencies": {

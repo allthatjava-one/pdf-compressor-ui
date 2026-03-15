@@ -321,41 +321,44 @@
 
 .size-comparison {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  flex-direction: column;
   background: #f8f9ff;
   border-radius: 12px;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   width: 100%;
-  justify-content: center;
+  gap: 0.2rem;
 }
 
-.size-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.size-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: baseline;
 }
 
-.size-label {
-  font-size: 0.75rem;
+.size-row--spacer {
+  height: 0.75rem;
+}
+
+.size-col-label {
+  font-size: 0.72rem;
+  font-weight: 600;
   color: #9ca3af;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
-.size-value {
-  font-size: 1.1rem;
-  font-weight: 700;
+.size-col-value {
+  font-size: 0.95rem;
+  font-weight: 600;
   color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.size-item.compressed .size-value {
+.size-col-value--compressed {
   color: #059669;
-}
-
-.size-arrow {
-  font-size: 1.25rem;
-  color: #9ca3af;
 }
 
 .size-reduction {

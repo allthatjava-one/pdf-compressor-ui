@@ -6,6 +6,7 @@ export function usePdfCompressor() {
   const [status, setStatus] = useState('idle') // idle | uploading | done | error
   const [progress, setProgress] = useState(0)
   const [originalSize, setOriginalSize] = useState(0)
+  const [compressedSize, setCompressedSize] = useState(0)
   const [downloadUrl, setDownloadUrl] = useState('')
   const [downloadName, setDownloadName] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
@@ -90,6 +91,7 @@ export function usePdfCompressor() {
 
       setDownloadUrl(blobUrl)
       setDownloadName(name)
+      setCompressedSize(blob.size)
       setProgress(100)
       setStatus('done')
 
@@ -111,6 +113,7 @@ export function usePdfCompressor() {
     setStatus('idle')
     setProgress(0)
     setOriginalSize(0)
+    setCompressedSize(0)
     setDownloadUrl('')
     setDownloadName('')
     setErrorMsg('')
@@ -122,6 +125,7 @@ export function usePdfCompressor() {
     status,
     progress,
     originalSize,
+    compressedSize,
     downloadUrl,
     downloadName,
     errorMsg,

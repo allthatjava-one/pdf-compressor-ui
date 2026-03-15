@@ -12,12 +12,6 @@ export default {
       return onRequestPost({ request, env })
     }
 
-    if (url.pathname === '/runtime-config' && request.method === 'GET') {
-      return Response.json(getRuntimeConfig(env), {
-        headers: { 'Cache-Control': 'no-store' },
-      })
-    }
-
     if (url.pathname === '/') {
       return new Response('Local function worker is running. Open http://localhost:4173 for the app.', {
         headers: { 'Content-Type': 'text/plain; charset=utf-8' },
