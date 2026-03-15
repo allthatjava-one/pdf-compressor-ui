@@ -1,8 +1,0 @@
-# Wrangler configuration
-# Project metadata for Wrangler (local dev and publish)
-name = "pdf-compressor-ui"
-main = "worker.js"
-compatibility_date = "2026-03-15"
-workers_dev = true
-# account_id = "your-account-id"  # uncomment and set when ready to publish
-keep_vars = true
