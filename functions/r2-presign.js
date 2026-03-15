@@ -3,7 +3,7 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
 export async function onRequestPost(context) {
   // Read R2 credentials from environment variables (never exposed to the browser)
-  const { R2_ENDPOINT_URL, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME } = context.env
+  const { R2_ENDPOINT_URL, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_PDF_COMPRESSOR_BUCKET_NAME } = context.env
 
   const { filename, contentType } = await context.request.json()
 
@@ -20,7 +20,7 @@ export async function onRequestPost(context) {
 
   const presignedUrl = await getSignedUrl(
     s3,
-    new PutObjectCommand({ Bucket: R2_BUCKET_NAME, Key: key, ContentType: contentType }),
+    new PutObjectCommand({ Bucket: R2_PDF_COMPRESSOR_BUCKET_NAME, Key: key, ContentType: contentType }),
     { expiresIn: 300 },
   )
 
