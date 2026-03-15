@@ -9,3 +9,8 @@ npm install cloudflare@latest
 npm run pages:dev
 ```
 access http://localhost:8789/ for service
+
+# Deploy to Cloudflare Pages
+```
+Deploy command:npx wrangler deploy --keep-vars
+```

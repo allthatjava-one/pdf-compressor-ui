@@ -5,6 +5,7 @@ export function PdfCompressorView({
   status,
   progress,
   originalSize,
+  compressedSize,
   downloadUrl,
   downloadName,
   errorMsg,
@@ -87,14 +88,22 @@ export function PdfCompressorView({
               <h2 className="result-title">Compression Complete!</h2>
 
               <div className="size-comparison">
-                <div className="size-item">
-                  <span className="size-label">File</span>
-                  <span className="size-value">{file.name}</span>
+                <div className="size-row">
+                  <span className="size-col-label">Original</span>
+                  <span className="size-col-label">Size</span>
                 </div>
-                <div className="size-arrow">·</div>
-                <div className="size-item">
-                  <span className="size-label">Original Size</span>
-                  <span className="size-value">{formatSize(originalSize)}</span>
+                <div className="size-row size-row--data">
+                  <span className="size-col-value">{file.name}</span>
+                  <span className="size-col-value">{formatSize(originalSize)}</span>
+                </div>
+                <div className="size-row size-row--spacer" />
+                <div className="size-row">
+                  <span className="size-col-label">Compressed</span>
+                  <span className="size-col-label">Size</span>
+                </div>
+                <div className="size-row size-row--data">
+                  <span className="size-col-value size-col-value--compressed">{downloadName}</span>
+                  <span className="size-col-value size-col-value--compressed">{formatSize(compressedSize)}</span>
                 </div>
               </div>
 
