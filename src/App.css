@@ -1,37 +1,83 @@
-/* ── App shell ───────────────────────────────────── */
-.app {
-  min-height: 100vh;
-  background: #f0f4ff;
+/* ── Layout / App shell ───────────────────────────── */
+.page {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
 }
 
 /* ── Header ──────────────────────────────────────── */
+:root {
+  --color-bg: #0f1117;
+  --color-surface: #1a1d27;
+  --color-border: #2a2d3a;
+  --color-primary: #4f8ef7;
+  --color-primary-hover: #3a7ae8;
+  --color-accent: #7c5cfc;
+  --color-text: #e2e8f0;
+  --color-muted: #8892a4;
+  --color-check: #34d399;
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
 .header {
-  background: #ffffff;
-  border-bottom: 1px solid #e8ecf4;
-  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.07);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-inner {
-  max-width: 900px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 0 2rem;
-  height: 64px;
+  /* slightly tighter horizontal padding to match previous tweak */
+  padding: 0 1rem;
+  height: 56px;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: space-between;
+  font-family: var(--font-sans);
 }
 
-.header-logo {
-  font-size: 1.5rem;
-}
-
-.header-title {
-  font-size: 1.2rem;
+.logo {
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #1e1e2e;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.5px;
+  color: var(--color-text);
+  /* small left nudge to better match reference spacing */
+  margin-left: -4px;
+}
+
+.logo-accent {
+  color: var(--color-primary);
+}
+
+.service { display: none }
+
+.nav { display: flex; align-items: center }
+.nav-link {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+}
+
+/* Nudge nav left slightly to match previous spacing */
+.nav {
+  transform: translateX(-10px);
 }
 
 /* ── Main ────────────────────────────────────────── */
@@ -41,6 +87,12 @@
   align-items: center;
   justify-content: center;
   padding: 3rem 1.5rem;
+}
+
+/* Center the card inside the main container */
+.main .container {
+  display: flex;
+  justify-content: center;
 }
 
 /* ── Card ────────────────────────────────────────── */
