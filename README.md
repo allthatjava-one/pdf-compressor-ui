@@ -12,5 +12,6 @@ access http://localhost:8789/ for service
 
 # Deploy to Cloudflare Pages
 ```
-Deploy command:npx wrangler deploy --keep-vars
+> Deploy command:npx wrangler deploy --keep-vars
+> Put Non-production branch deployment command as : echo "skip"
 ```
