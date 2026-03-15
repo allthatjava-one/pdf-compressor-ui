@@ -20,6 +20,11 @@ export function PdfCompressorView({
 }) {
   return (
     <>
+          <div className="service-notice">
+            <span className="service-notice-icon">🛠️</span>
+            <span>Due to technical limitations, only limited compression is supported at the moment. We are working on improvements — thank you for your patience.</span>
+          </div>
+
           {status !== 'done' && (
             <>
               <div className="hero-section">
