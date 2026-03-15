@@ -110,6 +110,7 @@ export function usePdfCompressor() {
 
   const handleReset = () => {
     if (downloadUrl) URL.revokeObjectURL(downloadUrl)
+    setFile(null)
     setStatus('idle')
     setProgress(0)
     setOriginalSize(0)
