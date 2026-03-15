@@ -18,16 +18,7 @@ export function PdfCompressorView({
   handleReset,
 }) {
   return (
-    <div className="app">
-      <header className="header">
-        <div className="header-inner">
-          <span className="header-logo">📄</span>
-          <h1 className="header-title">THRJ tools — PDF Compressor</h1>
-        </div>
-      </header>
-
-      <main className="main">
-        <div className="card">
+    <>
           {status !== 'done' && (
             <>
               <div
@@ -128,8 +119,6 @@ export function PdfCompressorView({
             Note: The compressed file will be stored in Cloudflare R2 storage for 30 min. Please
             download it within this period. After 30 min, the file will be automatically deleted.
           </div>
-        </div>
-      </main>
-    </div>
+    </>
   )
 }
