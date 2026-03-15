@@ -1,9 +1,7 @@
 import { onRequestPost } from './functions/r2-presign.js'
 
-function getRuntimeConfig(env) {
-  return {
-    pdfCompressorBackendUrl: env.PDF_COMPRESSOR_BACKEND_URL || '',
-  }
+async function getRuntimeConfig(env) {
+  return {}
 }
 
 export default {

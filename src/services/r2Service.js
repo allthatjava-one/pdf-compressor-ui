@@ -17,7 +17,7 @@ export async function uploadToR2(file) {
     throw new Error(`Failed to get presigned URL: ${res.status} ${res.statusText}`)
   }
 
-  const { presignedUrl, key } = await res.json()
+  const { presignedUrl, key, pdfCompressorBackendUrl } = await res.json()
 
   const response = await fetch(presignedUrl, {
     method: 'PUT',
@@ -29,5 +29,5 @@ export async function uploadToR2(file) {
     throw new Error(`Upload failed: ${response.status} ${response.statusText}`)
   }
 
-  return { presignedUrl, key }
+  return { presignedUrl, key, pdfCompressorBackendUrl }
 }
